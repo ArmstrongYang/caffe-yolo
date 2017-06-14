@@ -32,7 +32,7 @@ Convert the configuration file with:
 
 .. code:: bash
 
-    python create_yolo_prototxt.py tiny-yolo.cfg yolo_tiny
+    python create_yolo_prototxt.py models/tiny-yolo-voc.cfg yolo_tiny
 
 By default, only the *deploy* prototxt is generate. If the ``--train`` option is
 passed, the *train_val* version of the prototxt file is generated; however, the
@@ -42,13 +42,14 @@ as a form of partial automation of a manually defined training.
 The YOLO weights are available on the `YOLO <https://pjreddie.com/darknet/yolo/>`_
 and `YOLO v1 <http://pjreddie.com/darknet/yolov1/>`_
 websites.
-See the instructions there on how to download the weight files.
-To convert them to Caffe, use:
+See the instructions there on how to download the weight files, and suggest to make
+models folder and put them in. 
+To convert them to Caffe, use (please notice the files path and name):
 
 .. code:: bash
 
-    python create_yolo_caffemodel.py yolo_tiny_deploy.prototxt tiny-yolo.weights \
-           yolo_tiny.caffemodel
+    python create_yolo_caffemodel.py models/yolo_tiny_deploy.prototxt\ 
+        models/tiny-yolo-voc.weights models/yolo_tiny_voc.caffemodel
 
 If the number of weights is not compatible with the given prototxt, an error is
 returned.
@@ -57,7 +58,8 @@ Test the results on one of the images in the repository with:
 
 .. code:: bash
 
-    python yolo_detect.py yolo_tiny_deploy.prototxt yolo_tiny.caffemodel images/dog.jpg
+    python yolo_detect.py models/yolo_tiny_deploy.prototxt\
+        models/yolo_tiny_voc.caffemodel images/dog.jpg --mode voc
 
 By default, the presets for the *CoCo* networks are used. To use the `Pascal VOC`
 preset pass ``--mode voc`` option in order to use the correct set of class labels.
