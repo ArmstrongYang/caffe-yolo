@@ -266,8 +266,8 @@ def show_results(img, results, out_path):
         if imshow:
             draw_box(img, result[0], (xmin, ymin, xmax, ymax), result[5])
     if imshow:
-        print('----------------')
         print(out_path)
+        print('----------------')
         cv2.imwrite(out_path, img)
         #cv2.imshow('YOLO detection', img)
 
@@ -300,8 +300,8 @@ def detect(model_filename, weight_filename, img_filename, mode):
     t_start = datetime.now()
     out = net.forward_all(data=np.asarray([transformer.preprocess('data', img)]))
     t_end = datetime.now()
+    print('----------------')
     print('total time is {:.2f} milliseconds'.format((t_end-t_start).total_seconds()*1e3))
-    print('\n mode' + mode)
     if mode == 'darknet':
         net_output = out[out.keys()[0]]   # get first out layer
         if len(net_output.shape) > 2:
