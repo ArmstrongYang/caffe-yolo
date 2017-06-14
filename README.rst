@@ -48,8 +48,7 @@ To convert them to Caffe, use (please notice the files path and name):
 
 .. code:: bash
 
-    python create_yolo_caffemodel.py models/yolo_tiny_deploy.prototxt\ 
-        models/tiny-yolo-voc.weights models/yolo_tiny_voc.caffemodel
+    python create_yolo_caffemodel.py models/yolo_tiny_deploy.prototxt models/tiny-yolo-voc.weights models/yolo_tiny_voc.caffemodel
 
 If the number of weights is not compatible with the given prototxt, an error is
 returned.
@@ -58,8 +57,7 @@ Test the results on one of the images in the repository with:
 
 .. code:: bash
 
-    python yolo_detect.py models/yolo_tiny_deploy.prototxt\
-        models/yolo_tiny_voc.caffemodel images/dog.jpg --mode voc
+    python yolo_detect.py models/yolo_tiny_deploy.prototxt models/yolo_tiny_voc.caffemodel images/dog.jpg --mode voc
 
 By default, the presets for the *CoCo* networks are used. To use the `Pascal VOC`
 preset pass ``--mode voc`` option in order to use the correct set of class labels.
